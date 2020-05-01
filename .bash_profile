@@ -96,56 +96,26 @@ alias gc='git commit -a'
 alias gm='git merge'
 alias gcm='git checkout master'
 
+# Git Ignore script
 # Usage: gi <options>
 function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
-
-# Usage: add-swiftlint <project name>
-function add-swiftlint() {
-    printf "disabled_rules:
-        - colon
-        - identifier_name
-        - vertical_whitespace
-        - trailing_whitespace
-        - trailing_newline
-        - line_length
-        - file_length
-        - type_name
-        - force_cast
-        - nesting" > $@/.swiftlint.yml
-}
-
-
-
-############################################
-###  Added by Anaconda3 5.1.0 installer  ###
-############################################
-export PATH="/anaconda3/bin:$PATH"
-. /anaconda3/etc/profile.d/conda.sh
-
-alias conac='conda activate cosc343'
-alias conde='conda deactivate'
-
 
 
 ##########################
 ###  Used by Homebrew  ###
 ##########################
-[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+# [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
 
 
-GIT_PROMPT_ONLY_IN_REPO=1 # Use the default prompt when not in a git repo.
-GIT_PROMPT_FETCH_REMOTE_STATUS=1 # '0' Avoids fetching remote status
-GIT_PROMPT_SHOW_UPSTREAM=0 # Don't display upstream tracking branch
-GIT_SHOW_UNTRACKED_FILES=all # Don't count untracked files (no, normal, all)
-GIT_PROMPT_THEME=Custom
-GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=1 # uncomment to avoid printing the number of changed files
+# GIT_PROMPT_ONLY_IN_REPO=1 # Use the default prompt when not in a git repo.
+# GIT_PROMPT_FETCH_REMOTE_STATUS=1 # '0' Avoids fetching remote status
+# GIT_PROMPT_SHOW_UPSTREAM=0 # Don't display upstream tracking branch
+# GIT_SHOW_UNTRACKED_FILES=all # Don't count untracked files (no, normal, all)
+# GIT_PROMPT_THEME=Custom
+# GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=1 # uncomment to avoid printing the number of changed files
 
-if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-fi
+# if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+#   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+#   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+# fi
 
-# Setting PATH for Python 3.7
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
-export PATH
