@@ -1,10 +1,6 @@
-######################
-###  Useful stuff  ###
-######################
-# ---------------------- Paul Crane's PS1 ---------------------- #
-#PS1="\u@\h \[\033[0;36m\]\W\[\033[0m\]\[\033[0;32m\]\$(git-branch-prompt)\[\033[0m\] \$ "
-# -------------------------------------------------------------- #
-
+############################################################
+###  Useful stuff - Customise Terminal (bash) behaviour  ###
+############################################################
 
 #
 # (Git) Gets the name of the current checked out branch.
@@ -76,7 +72,7 @@ alias hideHiddenFiles='defaults write com.apple.finder AppleShowAllFiles NO'
 ##############################
 ###  Custom git shortcuts  ###
 ##############################
-alias git-clone='git clone -v --progress' #double check this code.
+alias git-clone='git clone -v --progress'
 alias git-ac='git-add-all && git-commit' #add and commit.
 alias git-status='git status --branch'
 alias git-diff='git diff'
@@ -91,7 +87,7 @@ alias git-log="git log --graph --pretty=format:'%Cred%x09%h%Creset %Cgreen(%cr) 
 alias git-log-follow='git log --follow'
 alias git-push='git push -v'
 alias git-pull='git pull -v'
-alias gs='git status'
+alias gs='git status --branch'
 alias gc='git commit -a'
 alias gm='git merge'
 alias gcm='git checkout master'
@@ -104,18 +100,26 @@ function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
 ##########################
 ###  Used by Homebrew  ###
 ##########################
-# [ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
+# For Bash Completion
+[[ -f "$(brew --prefix)/etc/bash_completion" ]] && source "$(brew --prefix)/etc/bash_completion"
 
 
-# GIT_PROMPT_ONLY_IN_REPO=1 # Use the default prompt when not in a git repo.
-# GIT_PROMPT_FETCH_REMOTE_STATUS=1 # '0' Avoids fetching remote status
-# GIT_PROMPT_SHOW_UPSTREAM=0 # Don't display upstream tracking branch
-# GIT_SHOW_UNTRACKED_FILES=all # Don't count untracked files (no, normal, all)
-# GIT_PROMPT_THEME=Custom
-# GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=1 # uncomment to avoid printing the number of changed files
+# For Bash Git Prompt
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  GIT_PROMPT_ONLY_IN_REPO=1
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
 
-# if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
-#   __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
-#   source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
-# fi
+# For custom git prompt colour and theme
+GIT_PROMPT_ONLY_IN_REPO=1 # Use the default prompt when not in a git repo.
+GIT_PROMPT_FETCH_REMOTE_STATUS=1 # '0' Avoids fetching remote status
+GIT_PROMPT_SHOW_UPSTREAM=0 # Don't display upstream tracking branch
+GIT_SHOW_UNTRACKED_FILES=all # Don't count untracked files (no, normal, all)
+GIT_PROMPT_THEME=Custom
+GIT_PROMPT_SHOW_CHANGED_FILES_COUNT=1 # uncomment to avoid printing the number of changed files
 
+# ---------------------- Paul Crane's Original PS1 ---------------------- #
+#PS1="\u@\h \[\033[0;36m\]\W\[\033[0m\]\[\033[0;32m\]\$(git-branch-prompt)\[\033[0m\] \$ "
+# ----------------------------------------------------------------------- #
